@@ -73,7 +73,7 @@ def userlist():
         conntype = 0
         virtaddresses = ''
 
-        reltime = str(datetime.timedelta(seconds=(int(time.time()) - int(centries[7+offset]))))
+        reltime = str(datetime.timedelta(seconds=(int(time.time()) - int(centries[8+offset]))))
 
         # iterate over routing table to get all virtual addresses for each client
         for r in rt:
