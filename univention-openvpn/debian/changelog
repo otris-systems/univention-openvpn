@@ -1,3 +1,9 @@
+openvpn4ucs (2.1.6) unstable; urgency=low
+  * fix openvpn status parsing with openvpn 2.6 in display_users
+
+ -- Holger Rasch <rasch@otris.systems>  Wed, 08 Jan 2026 18:00:00 +0100
+
+
 openvpn4ucs (2.1.5) unstable; urgency=low
   * fix search filters used to find openvpn server computer object
 
