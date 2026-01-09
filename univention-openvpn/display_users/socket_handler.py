@@ -54,11 +54,6 @@ def userlist():
                 break
     s.close()
 
-    if data and data[0].startswith('TITLE\tOpenVPN 2.4'):
-      offset = 1
-    else:
-      offset = 0
-
     cl = filter(lambda d: d.startswith('CLIENT_LIST\t'), data)
     rt = filter(lambda d: d.startswith('ROUTING_TABLE\t'), data)
 
@@ -89,7 +84,7 @@ def userlist():
                     conntype |= 2
                 virtaddresses += rvirtaddress + '\n'
 
-        result.append({'name': name, 'conn': 1, 'type': conntype, 'realip': realaddress, 'virtips': virtaddresses, 'cons': centries[6+offset], 'conr': reltime, 'recv': centries[4+offset], 'sent': centries[5+offset]})
+        result.append({'name': name, 'conn': 1, 'type': conntype, 'realip': realaddress, 'virtips': virtaddresses, 'cons': centries[7], 'conr': reltime, 'recv': centries[5], 'sent': centries[6]})
 
     return result
 
