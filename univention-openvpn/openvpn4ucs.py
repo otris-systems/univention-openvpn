@@ -318,7 +318,7 @@ def totp_disable(dn, obj):
     write_secrets(r)
 
     try:
-        os.unlink('{}/{}/qrcode.png'.format(fn_ready2go, uid))
+        os.unlink('{}/{}/qrcode.png'.format(fn_ready2go, uid.replace('/', '')))
     except Exception as e:
         ud.debug(ud.LISTENER, ud.ERROR, 'cannot remove qrcode for {}: {}'.format(uid, e))
 
@@ -395,6 +395,8 @@ def user_disable(dn, obj):
     tmp, server = lo.search(filter_format('(&(objectClass=univentionOpenvpn)(cn=%s))', [myname])[0]
     port = server.get('univentionOpenvpnPort', [b''])[0].decode('utf8')
     if port:
+        port = port.replace('/', '')
+        uid = uid.replace('/', '')
         ccd = '/etc/openvpn/ccd-' + port + '/'
         ips = '/etc/openvpn/ips-' + port
         ipsv6 = '/etc/openvpn/ipsv6-' + port
@@ -445,6 +447,7 @@ def user_enable(dn, obj):
 
     netmask, netmaskv6 = network2netmask(network, networkv6)
 
+    port = port.replace('/', '')
     ccd = '/etc/openvpn/ccd-' + port + '/'
     ips = '/etc/openvpn/ips-' + port
     ipsv6 = '/etc/openvpn/ipsv6-' + port
@@ -468,7 +471,7 @@ def create_bundle(uid, name, addr, port, proto, secret):
 
     if secret:
         try:
-            os.makedirs('{}/{}'.format(fn_ready2go, uid), exist_ok=True)
+            os.makedirs('{}/{}'.format(fn_ready2go, uid.replace('/', '')), exist_ok=True)
             q = qrcode.QRCode(box_size=5)
             q.add_data('otpauth://totp/OpenVPN4UCS:{}?secret={}&issuer=OpenVPN4UCS&digits=6'.format(quote(uid), quote(secret)))
             p = '{}/{}/qrcode.png'.format(fn_ready2go, uid)
@@ -786,6 +789,8 @@ def adjust_ccd(old, new):
 
     po = portold if portold else 'disabled'
     pn = portnew if portnew else 'disabled'
+    po = po.replace('/', '')
+    pn = pn.replace('/', '')
 
     ccd = '/etc/openvpn/ccd-' + pn + '/'
     ips = '/etc/openvpn/ips-' + pn
@@ -910,7 +915,7 @@ def update_config(obj):
 
     # derived values
     ip6conn = bool(addr and ':' in addr)
-    ccd = '/etc/openvpn/ccd-' + port + '/'
+    ccd = '/etc/openvpn/ccd-' + port.replace('/', '') + '/'
     ipnw = netaddr.IPNetwork(network)
     if ipnw.size == 1:
         netmask = '255.255.255.0'
@@ -1129,6 +1134,7 @@ def change_net(network, netmask, ccd, fn_ips, ipv6):
     users = map(lambda user: user[1].get('uid', [b''])[0].decode('utf8'), users)
 
     for name in users:
+        name = name.replace('/', '')
         ip_new = generate_ip(network, ip_map_new)
         ip_map_new.append((name, ip_new))
 
