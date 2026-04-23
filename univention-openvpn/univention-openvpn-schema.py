@@ -1,3 +1,6 @@
+from univention.admin.syntax import UDM_Objects, complex
+
+
 class openvpnUser( UDM_Objects ):
         udm_modules = ( 'users/user', )
         key = '%(username)s'
