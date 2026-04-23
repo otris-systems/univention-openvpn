@@ -28,9 +28,7 @@
 # TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 # USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
-
-__package__ = ''  # workaround for PEP 366
+from __future__ import absolute_import
 
 import re
 import os
@@ -47,6 +45,7 @@ import univention.config_registry.interfaces
 import netaddr
 import qrcode
 import csv
+from ldap.filter import filter_format
 
 from datetime import date
 from M2Crypto import RSA, BIO
@@ -98,11 +97,11 @@ def postrun():
             listener.setuid(0)
             lo = ul.getMachineConnection()
             name = listener.configRegistry['hostname']
-            tmp, server = lo.search('(&(objectClass=univentionOpenvpn)(cn=' + name + '))')[0]
+            tmp, server = lo.search(filter_format('(&(objectClass=univentionOpenvpn)(cn=%s))', [name]))[0]
 
             port = server.get('univentionOpenvpnPort', [b''])[0].decode('utf8')
             addr = server.get('univentionOpenvpnAddress', [b''])[0].decode('utf8')
-            proto = 'udp6' if addr and addr.count(':') else 'udp'
+            proto = 'udp6' if addr and ':' in addr else 'udp'
 
             if not name or not port or not addr:
                 lilog(ud.ERROR, 'missing params')
@@ -392,7 +391,7 @@ def user_disable(dn, obj):
         listener.unsetuid()
 
     myname = listener.configRegistry['hostname']
-    tmp, server = lo.search('(&(objectClass=univentionOpenvpn)(cn=' + myname + '))')[0]
+    tmp, server = lo.search(filter_format('(&(objectClass=univentionOpenvpn)(cn=%s))', [myname])[0]
     port = server.get('univentionOpenvpnPort', [b''])[0].decode('utf8')
     if port:
         ccd = '/etc/openvpn/ccd-' + port + '/'
@@ -432,7 +431,7 @@ def user_enable(dn, obj):
         listener.unsetuid()
 
     myname = listener.configRegistry['hostname']
-    tmp, server = lo.search('(&(objectClass=univentionOpenvpn)(cn=' + myname + '))')[0]
+    tmp, server = lo.search(filter_format('(&(objectClass=univentionOpenvpn)(cn=%s))', [myname])[0]
 
     # ccd config for user
     port              = server.get('univentionOpenvpnPort', [b''])[0].decode('utf8')
@@ -909,7 +908,7 @@ def update_config(obj):
     fixedaddresses = obj.get('univentionOpenvpnFixedAddresses', [b''])[0].decode('utf8')
 
     # derived values
-    ip6conn = bool(addr and addr.count(':'))
+    ip6conn = bool(addr and ':' in addr)
     ccd = '/etc/openvpn/ccd-' + port + '/'
     ipnw = netaddr.IPNetwork(network)
     if ipnw.size == 1:
@@ -1125,7 +1124,7 @@ def change_net(network, netmask, ccd, fn_ips, ipv6):
     finally:
         listener.unsetuid()
 
-    users = lo.search('univentionOpenvpnAccount=1')
+    users = lo.search('(univentionOpenvpnAccount=1)')
     users = map(lambda user: user[1].get('uid', [b''])[0].decode('utf8'), users)
 
     for name in users:
