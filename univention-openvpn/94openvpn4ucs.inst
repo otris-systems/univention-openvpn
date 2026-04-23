@@ -91,8 +91,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 # dualfactorauth flag is gone
 udm settings/extended_attribute remove "$@" \
@@ -124,8 +123,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-Redirect,${eabas}" >/dev/null 2>&1
@@ -154,8 +152,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-NetIPv6,${eabas}" >/dev/null 2>&1
@@ -184,8 +181,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='1' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-Masquerade,${eabas}" >/dev/null 2>&1
@@ -215,8 +211,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-Net,${eabas}" >/dev/null 2>&1
@@ -245,8 +240,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='1' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-Port,${eabas}" >/dev/null 2>&1
@@ -275,8 +269,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='1' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-Address,${eabas}" >/dev/null 2>&1
@@ -305,8 +298,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-Active,${eabas}" >/dev/null 2>&1
@@ -334,8 +326,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 # extension of user objects
 
@@ -361,8 +352,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-TOTP,${eabas}" >/dev/null 2>&1
@@ -387,8 +377,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 
 # extension of computer objects for sitetosite
@@ -420,8 +409,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-RemoteAddress,${eabas}" >/dev/null 2>&1
@@ -450,8 +438,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-LocalAddress,${eabas}" >/dev/null 2>&1
@@ -480,8 +467,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-SitetoSitePort,${eabas}" >/dev/null 2>&1
@@ -510,8 +496,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='1' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-Remote,${eabas}" >/dev/null 2>&1
@@ -540,8 +525,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-SitetoSiteActive,${eabas}" >/dev/null 2>&1
@@ -569,8 +553,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 udm settings/extended_attribute remove "$@" \
     --dn "cn=UniventionOpenvpn-License,${eabas}" >/dev/null 2>&1
@@ -598,8 +581,7 @@ univention-directory-manager settings/extended_attribute create "$@" --ignore_ex
     --set mayChange='1' \
     --set multivalue='0' \
     --set deleteObjectClass='0' \
-    --set doNotSearch='0' \
-    --set hook='None' || die
+    --set doNotSearch='0'|| die
 
 
 # initial site2site secret generation
