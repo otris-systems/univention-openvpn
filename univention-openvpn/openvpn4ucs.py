@@ -38,6 +38,7 @@ import pwd
 import grp
 import operator as op
 import traceback
+from urllib.parse import quote
 
 import listener
 import univention.debug as ud
@@ -470,7 +471,7 @@ def create_bundle(uid, name, addr, port, proto, secret):
         try:
             os.makedirs('{}/{}'.format(fn_ready2go, uid), exist_ok=True)
             q = qrcode.QRCode(box_size=5)
-            q.add_data('otpauth://totp/OpenVPN4UCS:{}?secret={}&issuer=OpenVPN4UCS&digits=6'.format(uid, secret))
+            q.add_data('otpauth://totp/OpenVPN4UCS:{}?secret={}&issuer=OpenVPN4UCS&digits=6'.format(quote(uid), quote(secret)))
             p = '{}/{}/qrcode.png'.format(fn_ready2go, uid)
             x = q.make_image()
             x.save(p)
