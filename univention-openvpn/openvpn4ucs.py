@@ -445,6 +445,9 @@ def user_enable(dn, obj):
         lilog(ud.ERROR, 'missing params')
         return
 
+    if network.find('/') == -1:
+        network += '/24'
+
     netmask, netmaskv6 = network2netmask(network, networkv6)
 
     port = port.replace('/', '')
