@@ -91,8 +91,7 @@ bundle="${readytogo}/openvpn-${server}-${uid}.zip"
 umask 037
 
 rm -f "$bundle"
-zip -j "$bundle" \
-    "$ovpncfg" \
+zip -j "$bundle" "$ovpncfg"
 chown "$uid" "$bundle"
 chgrp www-data "$bundle"
 
