@@ -18,7 +18,7 @@ class univentionOpenVpn(simpleHook):
 		if type(obj) == type([]) and len(obj) >= 1:
 			for i in obj:
 				if type(i) == type([]) and len(i) == 2:
-					new.append(self.delimiter.join(i))
+					new.append(self.delimiter.encode().join(i))
 					changed = True
 				else:
 					new.append(i)
@@ -39,7 +39,7 @@ class univentionOpenVpn(simpleHook):
 						old = i[1]
 						new = i[2]
 					else:
-						old = ''
+						old = b''
 						new = i [1]
 					old = self.__convert(old)
 					new = self.__convert(new)
